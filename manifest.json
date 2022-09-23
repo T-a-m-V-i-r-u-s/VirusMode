@@ -9,5 +9,8 @@
   "permissions": ["storage"]
   "action": {
     "default_popup": "popup.html"
+    "default_icon": {
+      "duck": "/images/duck.png"
+    }
   }
 }
