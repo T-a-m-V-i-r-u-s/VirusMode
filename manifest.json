@@ -12,5 +12,8 @@
     "default_icon": {
       "duck": "/images/duck.png"
     }
+  },
+  "icons": {
+    "duck": "/images/duck.png"
   }
 }
