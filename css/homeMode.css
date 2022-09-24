@@ -1,0 +1,27 @@
+html{
+    font-size: 62.5%;
+    font-family: 'Open Sans', sans-serif;
+    /* color: #fff; */
+    background-color: #000;
+    background-image: url(../images/duck.png);
+    background-size: cover;
+    
+}
+.grid-container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 30% 30% 30%;
+    grid-template-rows: 30% 30% 30%;
+    gap: 100px; 
+    /* background-color: rgb(33, 150, 243, 0.5); */
+    padding: 3%;
+}
+
+.grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    /* border: 1px solid black; */
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 30px;
+}

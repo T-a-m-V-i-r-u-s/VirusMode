@@ -1,5 +1,5 @@
 let div = document.getElementById("newTab");
-//let selectedClassName = "current";
+selectedClassName = "current";
 const presetURL = ["www.google.com", "www.w3schools.com"];
 
 //reacts to a button click by opening a new tab with the selected url
