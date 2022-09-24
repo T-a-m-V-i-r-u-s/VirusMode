@@ -1,30 +1,4 @@
 function applyPartyMode() {
-    // //get all backbround elements
-    // let backgroundElements = document.querySelectorAll("[style*='background-color']");
-    // //get all text elements
-    // let textElements = document.querySelectorAll("[style*='color']");
-    // //get all border elements
-    // let borderElements = document.querySelectorAll("[style*='border-color']");
-    // //get all shadow elements
-    // let shadowElements = document.querySelectorAll("[style*='box-shadow']");
-    // //get all image elements
-    // let imageElements = document.querySelectorAll("img");
-    // //get all link elements
-    // let linkElements = document.querySelectorAll("a");
-    // //get all button elements
-    // let buttonElements = document.querySelectorAll("button");
-    // //get all input elements
-    // let inputElements = document.querySelectorAll("input");
-    // //get all textarea elements
-    // let textareaElements = document.querySelectorAll("textarea");
-    // //get all select elements
-    // let selectElements = document.querySelectorAll("select");
-    // //get all option elements
-    // let optionElements = document.querySelectorAll("option");
-    // //get all table elements
-    // let tableElements = document.querySelectorAll("table");
-
-
     //get all elements
     let allElements = document.querySelectorAll("div");
 
@@ -35,7 +9,6 @@ function applyPartyMode() {
         // allElements[i].style.borderColor = getRandomColor();
         // allElements[i].style.boxShadow = "0 0 0 1px " + getRandomColor();
     }
-
 }
 
 //generate a random color
@@ -67,4 +40,29 @@ chrome.storage.local.get("partyMode", ({ partyMode }) => {
 function playSound(url) {
     let audio = new Audio(url);
     audio.play();
+}
+
+
+//apply party mode when switch value is changed
+chrome.storage.onChanged.addListener((changes, namespace) => {
+    for (key in changes) {
+        if (key === "partyMode") {
+            if (changes[key].newValue) {
+                applyPartyMode();
+            } else {
+                removePartyMode();
+            }
+        }
+    }
+});
+
+//remove party mode
+function removePartyMode() {
+    //get all elements
+    let allElements = document.querySelectorAll("div");
+
+    //remove random color from all elements
+    for (let i = 0; i < allElements.length; i++) {
+        allElements[i].style.backgroundColor = "";
+    }
 }

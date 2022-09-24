@@ -13,5 +13,24 @@ chrome.storage.local.get("wingdingsMode", ({ wingdingsMode }) => {
     }
 });
 
-//apply wingdings mode when page is loaded
-//applyWingdingsMode();
+//apply wingdings mode when switch value is changed
+chrome.storage.onChanged.addListener((changes, namespace) => {
+    for (key in changes) {
+        if(key === "wingdingsMode"){
+            if(changes[key].newValue){
+                applyWingdingsMode();
+            } else {
+                removeWingdingsMode();
+            }
+        }
+    }
+});
+
+//remove wingdings mode
+function removeWingdingsMode(){
+    //for all html tags, change font family to wingdings
+    var htmlElements = document.getElementsByTagName("*");
+    for (var i = 0; i < htmlElements.length; i++) {
+        htmlElements[i].style.fontFamily = "";
+    }
+}
