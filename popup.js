@@ -181,13 +181,9 @@ naughtyFilterLevelSlider.oninput = async function () {
   // update the blur level on the body element of the current chrome tab
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-  function applyNaughtyFilter(filterLevel) {
-    // apply filter to all images
-    $("img").css("filter", "blur(" + filterLevel + "px)");
-  }
-  chrome.scripting.executeScript({
+  const css = 'img { filter: blur(' + this.value + 'px) !important; }';
+  chrome.scripting.insertCSS({
     target: { tabId: tab.id },
-    func: applyNaughtyFilter,
-    args: [this.value],
+    css: css,
   });
 }
