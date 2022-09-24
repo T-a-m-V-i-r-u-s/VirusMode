@@ -24,7 +24,8 @@ function setPageBackgroundColor() {
 }
 
 
-/* TOGGLE SETTINGS */
+/* ------------- TOGGLE SETTINGS ------------- */
+/* ----- Rick Roll ----- */
 // Get toggle elements
 let rickMode = document.getElementById("rickRoll");
 
@@ -51,6 +52,8 @@ rickMode.addEventListener("click", async () => {
   });
 });
 
+
+/* ----- Party Mode ----- */
 //get toggle elements
 let partyMode = document.getElementById("partyMode");
 
@@ -76,3 +79,30 @@ partyMode.addEventListener("click", async () => {
     func: togglePartyMode,
   });
 });
+
+
+/* ------------- RANGE SLIDER ------------- */
+// Get the slider
+let tammyVisionLevelSlider = document.getElementById("tammyVisionLevel");
+
+// Get the current slider value
+chrome.storage.local.get("tammyVisionLevel", ({ tammyVisionLevel }) => {
+  tammyVisionLevelSlider.value = tammyVisionLevel;
+});
+
+// Update the vision level when the slider is changed
+tammyVisionLevelSlider.oninput = async function () {
+  chrome.storage.local.set({ tammyVisionLevel: this.value });
+  // update the blur level on the body element of the current chrome tab
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  function applyTammyVision(visionLevel) {
+    $("body").css("filter", "blur(" + visionLevel + "px)");
+  }
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    func: applyTammyVision,
+    args: [this.value],
+  });
+
+}

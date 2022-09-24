@@ -1,11 +1,11 @@
 function applyTammyVision(){
     // get level of blur from storage
-    chrome.storage.local.get("tammyVision", ({ tammyVission }) => {
+    chrome.storage.local.get("tammyVisionLevel", ({ tammyVisionLevel: tammyVisionLevel }) => {
         // if tammy vision is greater than 0, apply blur to body
-        // if (tammyVision > 0) {
-        //     $("body").css("filter", "blur(" + tammyVision + "px)");
+        // if (tammyVisionLevel > 0) {
+            $("body").css("filter", "blur(" + tammyVisionLevel + "px)");
         // }
-        $("body").css("filter", "blur(" + 0 + "px)");
+        // window.alert(tammyVisionLevel);
     });
 }
 

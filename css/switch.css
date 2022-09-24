@@ -20,8 +20,9 @@ body {
 }
 
 .label-text {
-	margin-left: 8px;
+	margin-right: 8px;
 	width: max-content;
+	white-space: nowrap;
 }
 
 .toggle {

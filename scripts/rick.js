@@ -11,7 +11,9 @@ function applyRickRoll() {
 
     // Remove all jsaction events
     $("[jsaction]").each(function () {
-        $(this).removeAttr("jsaction");
+        if ($(this).attr("jsaction") != undefined) {
+            $(this).removeAttr("jsaction");
+        }
     });
 
     // Get all the images in the and change the url to gif of RickRoll if does not contain class of rickroll
@@ -25,7 +27,7 @@ chrome.storage.local.get("rickRoll", ({ rickRoll }) => {
     if (!rickRoll) {
         return;
     }
-    
+
     // Run the function on page load
     $(document).ready(function () {
         applyRickRoll();
