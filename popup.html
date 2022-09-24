@@ -3,19 +3,14 @@
 
 <head>
   <link rel="stylesheet" href="css/button.css">
+  <link rel="stylesheet" href="css/switch.css">
   <link rel="stylesheet" href="css/slider.css">
 </head>
 
 <body>
   <button id="changeColor"></button>
-  <!-- Toggle to toggle rick mode -->
-  <!-- <label class="switch">
-    <input type="checkbox" id="rickMode">
-    <span class="slider round"></span>
-    <span class="slider-title">Rick Mode</span>
-  </label> -->
 
-  <div class="switch-container">
+  <div class="container">
     <label class="switch">
       <div class="label-text">asdf asdf asdf</div>
       <div class="toggle">
@@ -28,7 +23,7 @@
     </label>
   </div>
 
-  <div class="switch-container">
+  <div class="container">
     <label class="switch">
       <div class="label-text">Rick!!!</div>
       <div class="toggle">
@@ -39,6 +34,13 @@
         <div class="active-bg"></div>
       </div>
     </label>
+  </div>
+
+  <div class="container">
+    <div class="slider-container">
+      <div class="label-text">Tammy Vision Level</div>
+      <input type="range" min="0" max="50" value="0" class="slider" id="tammyVisionLevel">
+    </div>
   </div>
 
   <script src="popup.js"></script>
