@@ -139,6 +139,34 @@ duckMode.addEventListener("click", async () => {
   //})
 });
 
+//get toggle elements
+let allCapsMode = document.getElementById("allCapsModeEnabled");
+
+
+
+//Update the toggle elements when the page loads
+chrome.storage.local.get("allCapsModeEnabled", ({ allCapsModeEnabled }) => {
+  allCapsMode.checked = allCapsModeEnabled;
+});
+
+// function to toggle the all caps mode variable
+function toggleAllCapsMode(){
+  chrome.storage.local.get("allCapsModeEnabled", ({ allCapsModeEnabled }) => {
+    chrome.storage.local.set({ allCapsModeEnabled: !allCapsModeEnabled });
+    console.log('All Caps Mode set to %c' + !allCapsModeEnabled, `allCapsModeEnabled: ${allCapsModeEnabled}`);
+  });
+}
+
+//when the button is clicked, toggle the all caps mode variable
+allCapsMode.addEventListener("click", async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    func: toggleAllCapsMode,
+  });
+});
+
 /* ------------- RANGE SLIDER ------------- */
 /* ----- Tammy vision ----- */
 // Get the slider
@@ -188,30 +216,5 @@ naughtyFilterLevelSlider.oninput = async function () {
   });
 }
 
-//get toggle elements
-let allCapsMode = document.getElementById("allCapsModeEnabled");
-
-//update the toggle elements when the page loads
-chrome.storage.local.get("allCapsModeEnabled", ({ allCapsModeEnabled }) => {
-  allCapsMode.checked = allCapsModeEnabled;
-});
-
-//function to toggle the all caps variable
-function toggleAllCapsMode() {
-  chrome.storage.local.get("allCapsModeEnabled", ({ allCapsModeEnabled }) => {
-    chrome.storage.local.set({ allCapsModeEnabled: !allCapsModeEnabled });
-    console.log('All caps set to %c' + !allCapsModeEnabled, `allCapsModeEnabled: ${allCapsModeEnabled}`);
-  });
-}
-
-//when the button is clicked, toggle the all caps variable
-allCapsMode.addEventListener("click", async () => {
-  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    func: toggleAllCapsMode,
-  });
-});
 
 
