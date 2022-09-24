@@ -1,6 +1,6 @@
 {
-  "name": "Getting Started Example",
-  "description": "Build an Extension!",
+  "name": "VirusMode",
+  "description": "Everything you never wanted, found in one place",
   "version": "1.0",
   "manifest_version": 3,
   "background": {
@@ -12,13 +12,15 @@
     "default_icon": {
       "16": "/images/duck.png",
       "32": "/images/duck.png",
-      "64": "/images/duck.png"
+      "48": "/images/duck.png",
+      "128": "/images/duck.png"
     }
   },
   "icons": {
     "16": "/images/duck.png",
     "32": "/images/duck.png",
-    "64": "/images/duck.png"
+    "48": "/images/duck.png",
+    "128": "/images/duck.png"
   },
-"options_page": "options.html"
+  "options_page": "options.html"
 }
