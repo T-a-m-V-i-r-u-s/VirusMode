@@ -27,10 +27,14 @@ function setPageBackgroundColor() {
 /* TOGGLE SETTINGS */
 // Get toggle elements
 let rickMode = document.getElementById("rickRoll");
+let duckMode = document.getElementById("duckModeEnabled");
 
 // Update the toggle elements when the page loads
 chrome.storage.local.get("rickRoll", ({ rickRoll }) => {
   rickMode.checked = rickRoll;
+});
+chrome.storage.local.get("duckModeEnabled", ({ duckModeEnabled }) => {
+  duckMode.checked = duckModeEnabled;
 });
 
 // Function to toggle the rick roll variable
@@ -49,4 +53,25 @@ rickMode.addEventListener("click", async () => {
     target: { tabId: tab.id },
     func: toggleRickRoll,
   });
+});
+
+// Function to toggle the duck mode variable
+function toggleDuckMode() {
+  chrome.storage.local.get("duckModeEnabled", ({ duckModeEnabled }) => {
+    chrome.storage.local.set({ duckModeEnabled: !duckModeEnabled });
+    console.log('Duck mode set to %c' + !duckModeEnabled, `duckModeEnabled: ${duckModeEnabled}`);
+  });
+}
+// When the button is clicked, toggle the duck mode variable
+duckMode.addEventListener("click", async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    func: toggleDuckMode,
+  });
+  // inject duck mode script into active tab
+  //chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+  //  chrome.scripting.executeScript({target: {tabId: tabs[0].id}, files: ['scripts/duckMode.js']})
+  //})
 });

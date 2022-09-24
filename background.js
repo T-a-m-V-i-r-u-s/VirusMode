@@ -6,7 +6,8 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.set({ color });
   console.log('Default background color set to %cgreen', `color: ${color}`);
 
-  // Set the rick roll variable to false
+  // Set mode variables to false
   chrome.storage.sync.set({ rickRoll: false });
+  chrome.storage.sync.set({ duckModeEnabled: false });
 });
 
