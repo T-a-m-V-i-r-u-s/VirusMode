@@ -52,13 +52,11 @@ function getRandomColor() {
 chrome.storage.local.get("partyMode", ({ partyMode }) => {
     if (partyMode) {
         applyPartyMode();
-        //if user clicks on a div, play a sound
-        document.addEventListener("click", function (e) {
-            if (e.target && e.target.nodeName == "DIV") {
-                let audio = new Audio('https://www.myinstants.com/media/sounds/boing-sound-effect.mp3');
-                audio.play();
-            }
-        });
+        //if user left click, play sound
+        // document.addEventListener("click", () => {
+        //     let audio = new Audio("https://youtu.be/brwS_ZmVaRc");
+        //     audio.play();
+        // });
         //playSound("https://youtu.be/brwS_ZmVaRc");
         //apply party mode every 0.5 seconds
         //setInterval(applyPartyMode, 500);

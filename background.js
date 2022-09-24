@@ -8,5 +8,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
   // Set the rick roll variable to false
   chrome.storage.local.set({ rickRoll: false });
+
+  chrome.storage.local.set({ partyMode: false });
 });
 
