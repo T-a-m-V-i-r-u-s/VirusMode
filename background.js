@@ -8,6 +8,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
   // Set mode variables to false
   chrome.storage.sync.set({ rickRoll: false });
+  chrome.storage.local.set({ partyMode: false });
   chrome.storage.sync.set({ duckModeEnabled: false });
 });
 

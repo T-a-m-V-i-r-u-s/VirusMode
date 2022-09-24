@@ -27,14 +27,10 @@ function setPageBackgroundColor() {
 /* TOGGLE SETTINGS */
 // Get toggle elements
 let rickMode = document.getElementById("rickRoll");
-let duckMode = document.getElementById("duckModeEnabled");
 
 // Update the toggle elements when the page loads
 chrome.storage.local.get("rickRoll", ({ rickRoll }) => {
   rickMode.checked = rickRoll;
-});
-chrome.storage.local.get("duckModeEnabled", ({ duckModeEnabled }) => {
-  duckMode.checked = duckModeEnabled;
 });
 
 // Function to toggle the rick roll variable
@@ -53,6 +49,40 @@ rickMode.addEventListener("click", async () => {
     target: { tabId: tab.id },
     func: toggleRickRoll,
   });
+});
+
+//get toggle elements
+let partyMode = document.getElementById("partyMode");
+
+//Update the toggle elements when the page loads
+chrome.storage.local.get("partyMode", ({ partyMode }) => {
+  partyMode.checked = partyMode;
+});
+
+//Function to toggle the party mode variable
+function togglePartyMode() {
+  chrome.storage.local.get("partyMode", ({ partyMode }) => {
+    chrome.storage.local.set({ partyMode: !partyMode });
+    console.log('Party mode set to %c' + !partyMode, `partyMode: ${partyMode}`);
+  });
+}
+
+//When the button is clicked, toggle the party mode variable
+partyMode.addEventListener("click", async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    func: togglePartyMode,
+  });
+});
+
+// get toggle elements
+let duckMode = document.getElementById("duckModeEnabled");
+
+// Update the toggle elements when the page loads
+chrome.storage.local.get("duckModeEnabled", ({ duckModeEnabled }) => {
+  duckMode.checked = duckModeEnabled;
 });
 
 // Function to toggle the duck mode variable
