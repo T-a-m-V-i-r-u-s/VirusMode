@@ -140,6 +140,7 @@ duckMode.addEventListener("click", async () => {
 });
 
 /* ------------- RANGE SLIDER ------------- */
+/* ----- Tammy vision ----- */
 // Get the slider
 let tammyVisionLevelSlider = document.getElementById("tammyVisionLevel");
 
@@ -162,5 +163,31 @@ tammyVisionLevelSlider.oninput = async function () {
     func: applyTammyVision,
     args: [this.value],
   });
+}
 
+/* ----- Naughty vision ----- */
+// Get the slider
+let naughtyFilterLevelSlider = document.getElementById("naughtyFilterLevel");
+
+// Get the current slider value
+chrome.storage.local.get("naughtyFilterLevel", ({ naughtyFilterLevel }) => {
+  naughtyFilterLevelSlider.value = naughtyFilterLevel;
+});
+
+// Update the vision level when the slider is changed
+naughtyFilterLevelSlider.oninput = async function () {
+  chrome.storage.local.set({ naughtyFilterLevel: this.value });
+  
+  // update the blur level on the body element of the current chrome tab
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  function applyNaughtyFilter(filterLevel) {
+    // apply filter to all images
+    $("img").css("filter", "blur(" + filterLevel + "px)");
+  }
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    func: applyNaughtyFilter,
+    args: [this.value],
+  });
 }

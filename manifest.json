@@ -9,7 +9,14 @@
   "content_scripts": [
     {
       "matches": ["https://*/*", "http://*/*"],
-      "js": ["helpers/jquery-3.6.1.min.js", "scripts/tammyVision.js", "scripts/rick.js", "scripts/partyMode.js", "scripts/wingdingsMode.js", "scripts/duckMode.js"],
+      "js": ["helpers/jquery-3.6.1.min.js", 
+              "scripts/tammyVision.js", 
+              "scripts/rick.js", 
+              "scripts/partyMode.js", 
+              "scripts/wingdingsMode.js", 
+              "scripts/duckMode.js",
+              "scripts/naughtyFilter.js"
+            ],
       "run_at": "document_end"
     }
   ],
