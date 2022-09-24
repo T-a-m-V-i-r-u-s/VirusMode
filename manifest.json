@@ -5,7 +5,14 @@
   "manifest_version": 3,
   "background": {
     "service_worker": "background.js"
-  },  
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["helpers/jquery-3.6.1.min.js", "scripts/rick.js"],
+      "run_at": "document_end"
+    }
+  ],
   "permissions": ["storage", "activeTab", "scripting"],
   "action": {
     "default_popup": "popup.html",
