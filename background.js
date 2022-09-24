@@ -8,6 +8,6 @@ chrome.runtime.onInstalled.addListener(() => {
 
   // Set the rick roll variable to false
   chrome.storage.sync.set({ rickRoll: false });
-  console.log('Default rick roll set to %cfalse', `rickRoll: ${rickRoll}`);
+  //console.log('Default rick roll set to %cfalse', `rickRoll: ${rickRoll}`);
 });
 
