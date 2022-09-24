@@ -1,5 +1,3 @@
-
-
 function rickRoll() {
     // Get all the links change them to rick roll
     $("a").each(function () {
@@ -11,13 +9,10 @@ function rickRoll() {
         $(this).attr("onclick", "window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'");
     });
 
-    // // Remove all jsaction events and replace them with onclick rick roll
-    // $("[jsaction]").each(function () {
-    //     $(this).removeAttr("jsaction");
-    //     // $(this).attr("onclick", "window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'");
-    //     // $(this).attr("jsaction", "window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'");
-    //     // $(this).attr("onclick", "window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'");
-    // });
+    // Remove all jsaction events
+    $("[jsaction]").each(function () {
+        $(this).removeAttr("jsaction");
+    });
 
     // Get all the images in the and change the url to gif of RickRoll if does not contain class of rickroll
     $("img").each(function () {
@@ -27,13 +22,18 @@ function rickRoll() {
     });
 }
 
-// Run the function on page load
-$(document).ready(function () {
-    rickRoll();
-});
+// if the rick roll variable is true, run the rick roll function on page load and on page scroll
+chrome.storage.sync.get("rickRoll", ({ rickRoll }) => {
+    if (rickRoll) {
+        // Run the function on page load
+        $(document).ready(function () {
+            rickRoll();
+        });
 
-//run fuction on page scroll
-$(window).scroll(function () {
-    rickRoll();
+        //run fuction on page scroll
+        $(window).scroll(function () {
+            rickRoll();
+        });
+    }
 });
 
