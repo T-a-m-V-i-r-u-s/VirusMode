@@ -16,12 +16,14 @@ function applyRickRoll() {
         }
     });
 
-    // Get all the images in the and change the url to gif of RickRoll if does not contain class of rickroll
-    $("img").each(function () {
-        if (!$(this).hasClass("aDuck")) {
-            $(this).attr("src", "https://c.tenor.com/_4YgA77ExHEAAAAd/rick-roll.gif");
-        }
-    });
+    // insert css to change image content to rick roll gif
+    const css = 'img:not(.aDuck) { content: url(https://c.tenor.com/_4YgA77ExHEAAAAd/rick-roll.gif); }';
+    const head = document.head || document.getElementsByTagName('head')[0];
+    const style = document.createElement('style');
+    // change the id to rick-filter so that it can be removed later
+    style.id = 'rick-filter';
+    style.appendChild(document.createTextNode(css));
+    head.appendChild(style);
 }
 
 // if the rick roll variable is true, run the rick roll function on page load and on page scroll
