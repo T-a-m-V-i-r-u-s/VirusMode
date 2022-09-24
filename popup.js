@@ -81,6 +81,62 @@ partyMode.addEventListener("click", async () => {
 });
 
 
+//get toggle elements
+let wingdingsMode = document.getElementById("wingdingsMode");
+
+//update the toggle elements when the page loads
+chrome.storage.local.get("wingdingsMode", ({ wingdingsMode }) => {
+  wingdingsMode.checked = wingdingsMode;
+});
+
+//function to toggle the wingding variable
+function toggleWingdingsMode() {
+  chrome.storage.local.get("wingdingsMode", ({ wingdingsMode }) => {
+    chrome.storage.local.set({ wingdingsMode: !wingdingsMode });
+    console.log('Wingding set to %c' + !wingdingsMode, `wingdingsMode: ${wingdingsMode}`);
+  });
+}
+
+//when the button is clicked, toggle the wingding variable
+wingdingsMode.addEventListener("click", async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    func: toggleWingdingsMode,
+  });
+});
+
+
+// get toggle elements
+let duckMode = document.getElementById("duckModeEnabled");
+
+// Update the toggle elements when the page loads
+chrome.storage.local.get("duckModeEnabled", ({ duckModeEnabled }) => {
+  duckMode.checked = duckModeEnabled;
+});
+
+// Function to toggle the duck mode variable
+function toggleDuckMode() {
+  chrome.storage.local.get("duckModeEnabled", ({ duckModeEnabled }) => {
+    chrome.storage.local.set({ duckModeEnabled: !duckModeEnabled });
+    console.log('Duck mode set to %c' + !duckModeEnabled, `duckModeEnabled: ${duckModeEnabled}`);
+  });
+}
+// When the button is clicked, toggle the duck mode variable
+duckMode.addEventListener("click", async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    func: toggleDuckMode,
+  });
+  // inject duck mode script into active tab
+  //chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+  //  chrome.scripting.executeScript({target: {tabId: tabs[0].id}, files: ['scripts/duckMode.js']})
+  //})
+});
+
 /* ------------- RANGE SLIDER ------------- */
 // Get the slider
 let tammyVisionLevelSlider = document.getElementById("tammyVisionLevel");

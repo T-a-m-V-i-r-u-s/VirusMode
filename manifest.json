@@ -9,7 +9,7 @@
   "content_scripts": [
     {
       "matches": ["https://*/*", "http://*/*"],
-      "js": ["helpers/jquery-3.6.1.min.js", "scripts/tammyVision.js", "scripts/rick.js", "scripts/partyMode.js"],
+      "js": ["helpers/jquery-3.6.1.min.js", "scripts/tammyVision.js", "scripts/rick.js", "scripts/partyMode.js", "scripts/wingdingsMode.js", "scripts/duckMode.js"],
       "run_at": "document_end"
     }
   ],
@@ -29,5 +29,9 @@
     "48": "/images/duck.png",
     "128": "/images/duck.png"
   },
-  "options_page": "homeMode.html"
+  "options_page": "homeMode.html",
+  "web_accessible_resources": [{ 
+    "resources": ["/images/*.png"],
+    "matches": ["<all_urls>"]
+  }]
 }
