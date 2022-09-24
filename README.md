@@ -21,6 +21,7 @@ To be Completed Modes
 - 48hr Mode
 - CAPS MODE
 - no cap mode - (disables shift button?)
+- Wingdings Mode
 - Virus Mode
 
 Completed Modes 
