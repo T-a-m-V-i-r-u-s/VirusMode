@@ -76,3 +76,30 @@ partyMode.addEventListener("click", async () => {
     func: togglePartyMode,
   });
 });
+
+//get toggle elements
+let wingding = document.getElementById("wingding");
+
+//update the toggle elements when the page loads
+chrome.storage.local.get("wingding", ({ wingding }) => {
+  wingding.checked = wingding;
+});
+
+//function to toggle the wingding variable
+function toggleWingding() {
+  chrome.storage.local.get("wingding", ({ wingding }) => {
+    chrome.storage.local.set({ wingding: !wingding });
+    console.log('Wingding set to %c' + !wingding, `wingding: ${wingding}`);
+  });
+}
+
+//when the button is clicked, toggle the wingding variable
+wingding.addEventListener("click", async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    func: toggleWingding,
+  });
+});
+
