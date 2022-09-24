@@ -55,11 +55,11 @@ rickMode.addEventListener("click", async () => {
 
 /* ----- Party Mode ----- */
 //get toggle elements
-let partyMode = document.getElementById("partyMode");
+let partyModeEnabled = document.getElementById("partyModeEnabled");
 
 //Update the toggle elements when the page loads
 chrome.storage.local.get("partyMode", ({ partyMode }) => {
-  partyMode.checked = partyMode;
+  partyModeEnabled.checked = partyMode;
 });
 
 //Function to toggle the party mode variable
@@ -71,7 +71,7 @@ function togglePartyMode() {
 }
 
 //When the button is clicked, toggle the party mode variable
-partyMode.addEventListener("click", async () => {
+partyModeEnabled.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   chrome.scripting.executeScript({
@@ -81,12 +81,13 @@ partyMode.addEventListener("click", async () => {
 });
 
 
+/* ----- Wing Dings ----- */
 //get toggle elements
-let wingdingsMode = document.getElementById("wingdingsMode");
+let wingdingsModeEnabled = document.getElementById("wingdingsModeEnabled");
 
 //update the toggle elements when the page loads
 chrome.storage.local.get("wingdingsMode", ({ wingdingsMode }) => {
-  wingdingsMode.checked = wingdingsMode;
+  wingdingsModeEnabled.checked = wingdingsMode;
 });
 
 //function to toggle the wingding variable
@@ -98,7 +99,7 @@ function toggleWingdingsMode() {
 }
 
 //when the button is clicked, toggle the wingding variable
-wingdingsMode.addEventListener("click", async () => {
+wingdingsModeEnabled.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   chrome.scripting.executeScript({
@@ -108,6 +109,7 @@ wingdingsMode.addEventListener("click", async () => {
 });
 
 
+/* ----- Duck mode ----- */
 // get toggle elements
 let duckMode = document.getElementById("duckModeEnabled");
 
