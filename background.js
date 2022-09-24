@@ -11,6 +11,7 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.set({ partyMode: false });
   chrome.storage.local.set({ duckModeEnabled: false });
   chrome.storage.local.set({ wingdingsMode: false });
+  chrome.storage.local.set({ allCapsMode: false });
   chrome.storage.local.set({ tammyVisionLevel: 0 });
   chrome.storage.local.set({ naughtyFilterLevel: 0 });
 });

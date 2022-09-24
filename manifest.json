@@ -15,7 +15,8 @@
               "scripts/partyMode.js", 
               "scripts/wingdingsMode.js", 
               "scripts/duckMode.js",
-              "scripts/naughtyFilter.js"
+              "scripts/naughtyFilter.js", 
+              "scripts/allCapsMode.js"
             ],
       "run_at": "document_end"
     }
