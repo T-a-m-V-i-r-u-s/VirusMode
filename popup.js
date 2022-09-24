@@ -94,7 +94,7 @@ function toggleWingdingsMode() {
 }
 
 //when the button is clicked, toggle the wingding variable
-wingding.addEventListener("click", async () => {
+wingdingsMode.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   chrome.scripting.executeScript({
