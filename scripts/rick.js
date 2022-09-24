@@ -16,7 +16,9 @@ function applyRickRoll() {
 
     // Get all the images in the and change the url to gif of RickRoll if does not contain class of rickroll
     $("img").each(function () {
-        $(this).attr("src", "https://c.tenor.com/_4YgA77ExHEAAAAd/rick-roll.gif");
+        if (!$(this).hasClass("aDuck")) {
+            $(this).attr("src", "https://c.tenor.com/_4YgA77ExHEAAAAd/rick-roll.gif");
+        }
     });
 }
 
