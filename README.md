@@ -12,7 +12,6 @@ To be Completed Modes
     - Duck - steals your stuff
     - Army - army of ducks fill up screen - you have to move out of way
 - Blur Mode
-- Party Mode
 - Duck Mode
   - Stamp
   - Run
@@ -27,3 +26,4 @@ Completed Modes
   - Button Grid
     - "New Tab" - Closes current tab
 - Rick Mode
+- Party Mode
