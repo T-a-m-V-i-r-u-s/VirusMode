@@ -78,18 +78,18 @@ partyMode.addEventListener("click", async () => {
 });
 
 //get toggle elements
-let wingding = document.getElementById("wingding");
+let wingdingsMode = document.getElementById("wingdingsMode");
 
 //update the toggle elements when the page loads
-chrome.storage.local.get("wingding", ({ wingding }) => {
-  wingding.checked = wingding;
+chrome.storage.local.get("wingdingsMode", ({ wingdingsMode }) => {
+  wingdingsMode.checked = wingdingsMode;
 });
 
 //function to toggle the wingding variable
-function toggleWingding() {
-  chrome.storage.local.get("wingding", ({ wingding }) => {
-    chrome.storage.local.set({ wingding: !wingding });
-    console.log('Wingding set to %c' + !wingding, `wingding: ${wingding}`);
+function toggleWingdingsMode() {
+  chrome.storage.local.get("wingdingsMode", ({ wingdingsMode }) => {
+    chrome.storage.local.set({ wingdingsMode: !wingdingsMode });
+    console.log('Wingding set to %c' + !wingdingsMode, `wingdingsMode: ${wingdingsMode}`);
   });
 }
 
@@ -99,7 +99,7 @@ wingding.addEventListener("click", async () => {
 
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
-    func: toggleWingding,
+    func: toggleWingdingsMode,
   });
 });
 
