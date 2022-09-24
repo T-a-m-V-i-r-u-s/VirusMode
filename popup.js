@@ -145,10 +145,10 @@ duckMode.addEventListener("click", async () => {
   //})
 });
 
+
+/* ----- ALL CAPS MODE ----- */
 //get toggle elements
 let allCapsMode = document.getElementById("allCapsModeEnabled");
-
-
 
 //Update the toggle elements when the page loads
 chrome.storage.local.get("allCapsModeEnabled", ({ allCapsModeEnabled }) => {
@@ -170,6 +170,33 @@ allCapsMode.addEventListener("click", async () => {
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     func: toggleAllCapsMode,
+  });
+});
+
+/* ----- no caps mode ----- */
+//get toggle elements
+let noCapsMode = document.getElementById("noCapsModeEnabled");
+
+//Update the toggle elements when the page loads
+chrome.storage.local.get("noCapsModeEnabled", ({ noCapsModeEnabled }) => {
+  noCapsMode.checked = noCapsModeEnabled;
+});
+
+// function to toggle the no caps mode variable
+function toggleNoCapsMode(){
+  chrome.storage.local.get("noCapsModeEnabled", ({ noCapsModeEnabled }) => {
+    chrome.storage.local.set({ noCapsModeEnabled: !noCapsModeEnabled });
+    console.log('no caps mode set to %c' + !noCapsModeEnabled, `noCapsModeEnabled: ${noCapsModeEnabled}`);
+  });
+}
+
+//when the button is clicked, toggle the no caps mode variable
+noCapsMode.addEventListener("click", async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    func: toggleNoCapsMode,
   });
 });
 
