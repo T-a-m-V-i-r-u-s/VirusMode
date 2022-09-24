@@ -1,5 +1,3 @@
-// let doRickRoll = false;
-
 function applyRickRoll() {
     // Get all the links change them to rick roll
     $("a").each(function () {
@@ -24,20 +22,14 @@ function applyRickRoll() {
 
 // if the rick roll variable is true, run the rick roll function on page load and on page scroll
 chrome.storage.local.get("rickRoll", ({ rickRoll }) => {
-    if (rickRoll) {
-        // Run the function on page load
-        $(document).ready(function () {
-            applyRickRoll();
-        });
+    // Run the function on page load
+    $(document).ready(function () {
+        applyRickRoll();
+    });
 
-        //run fuction on page scroll
-        $(window).scroll(function () {
-            applyRickRoll();
-        });
-        // window.alert("Rick Roll is on!");
-    }
-    else {
-        // window.alert("Rick Roll is off!");
-    }
+    //run fuction on page scroll
+    $(window).scroll(function () {
+        applyRickRoll();
+    });
 });
 
