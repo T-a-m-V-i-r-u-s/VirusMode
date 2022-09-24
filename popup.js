@@ -191,3 +191,31 @@ naughtyFilterLevelSlider.oninput = async function () {
     args: [this.value],
   });
 }
+
+//get toggle elements
+let allCapsMode = document.getElementById("allCapsModeEnabled");
+
+//update the toggle elements when the page loads
+chrome.storage.local.get("allCapsModeEnabled", ({ allCapsModeEnabled }) => {
+  allCapsMode.checked = allCapsModeEnabled;
+});
+
+//function to toggle the all caps variable
+function toggleAllCapsMode() {
+  chrome.storage.local.get("allCapsModeEnabled", ({ allCapsModeEnabled }) => {
+    chrome.storage.local.set({ allCapsModeEnabled: !allCapsModeEnabled });
+    console.log('All caps set to %c' + !allCapsModeEnabled, `allCapsModeEnabled: ${allCapsModeEnabled}`);
+  });
+}
+
+//when the button is clicked, toggle the all caps variable
+allCapsMode.addEventListener("click", async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    func: toggleAllCapsMode,
+  });
+});
+
+
