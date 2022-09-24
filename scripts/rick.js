@@ -22,6 +22,10 @@ function applyRickRoll() {
 
 // if the rick roll variable is true, run the rick roll function on page load and on page scroll
 chrome.storage.local.get("rickRoll", ({ rickRoll }) => {
+    if (!rickRoll) {
+        return;
+    }
+    
     // Run the function on page load
     $(document).ready(function () {
         applyRickRoll();
