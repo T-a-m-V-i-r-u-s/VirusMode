@@ -10,11 +10,15 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "duck": "/images/duck.png"
+      "16": "/images/duck.png",
+      "32": "/images/duck.png",
+      "64": "/images/duck.png"
     }
   },
   "icons": {
-    "duck": "/images/duck.png"
+    "16": "/images/duck.png",
+    "32": "/images/duck.png",
+    "64": "/images/duck.png"
   },
 "options_page": "options.html"
 }
