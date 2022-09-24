@@ -10,7 +10,7 @@ html{
 .grid-container {
     display: grid;
     justify-content: center;
-    grid-template-columns: 30% 30% 30%;
+    grid-template-columns: 20% 20% 20%;
     grid-template-rows: 30% 30% 30%;
     gap: 100px; 
     /* background-color: rgb(33, 150, 243, 0.5); */

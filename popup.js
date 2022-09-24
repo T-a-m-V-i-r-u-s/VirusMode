@@ -50,3 +50,29 @@ rickMode.addEventListener("click", async () => {
     func: toggleRickRoll,
   });
 });
+
+//get toggle elements
+let partyMode = document.getElementById("partyMode");
+
+//Update the toggle elements when the page loads
+chrome.storage.local.get("partyMode", ({ partyMode }) => {
+  partyMode.checked = partyMode;
+});
+
+//Function to toggle the party mode variable
+function togglePartyMode() {
+  chrome.storage.local.get("partyMode", ({ partyMode }) => {
+    chrome.storage.local.set({ partyMode: !partyMode });
+    console.log('Party mode set to %c' + !partyMode, `partyMode: ${partyMode}`);
+  });
+}
+
+//When the button is clicked, toggle the party mode variable
+partyMode.addEventListener("click", async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    func: togglePartyMode,
+  });
+});

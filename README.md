@@ -6,7 +6,6 @@ To be Completed Modes
     - Multiple Buttons Lead Nowhere
     - Mouse tracker
     - Questions?
-    - "New Tab" - Closes current tab
     - Hey Siri - "Hey Siri, call mum"
     - Rolling - Open (multiple?) Rick Roll YouTube tabs
     - inconvenient Calculator 
@@ -14,7 +13,6 @@ To be Completed Modes
     - Army - army of ducks fill up screen - you have to move out of way
 - Blur Mode
 - Party Mode
-- Rick Mode
 - Duck Mode
   - Stamp
   - Run
@@ -25,4 +23,7 @@ To be Completed Modes
 - Virus Mode
 
 Completed Modes 
-- N/A
+- Home Mode
+  - Button Grid
+    - "New Tab" - Closes current tab
+- Rick Mode
