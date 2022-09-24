@@ -106,6 +106,12 @@ wingdingsModeEnabled.addEventListener("click", async () => {
     target: { tabId: tab.id },
     func: toggleWingdingsMode,
   });
+
+  const css = '* { font-family: wingdings !important; }';
+  chrome.scripting.insertCSS({
+    target: { tabId: tab.id },
+    css: css,
+  });
 });
 
 
@@ -178,12 +184,15 @@ chrome.storage.local.get("naughtyFilterLevel", ({ naughtyFilterLevel }) => {
 naughtyFilterLevelSlider.oninput = async function () {
   chrome.storage.local.set({ naughtyFilterLevel: this.value });
   
-  // update the blur level on the body element of the current chrome tab
+  // update the innerHTML of the style element with id naughty-filter
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-  const css = 'img { filter: blur(' + this.value + 'px) !important; }';
-  chrome.scripting.insertCSS({
+  function applyNaughtyFilter(filterLevel) {
+    $("#naughty-filter").html("img { filter: blur(" + filterLevel + "px); }");
+  }
+  chrome.scripting.executeScript({
     target: { tabId: tab.id },
-    css: css,
+    func: applyNaughtyFilter,
+    args: [this.value],
   });
 }
