@@ -11,14 +11,11 @@ To be Completed Modes
     - inconvenient Calculator 
     - Duck - steals your stuff
     - Army - army of ducks fill up screen - you have to move out of way
-- Blur Mode
 - Duck Mode
-  - Stamp
   - Run
 - 48hr Mode
 - CAPS MODE
 - no cap mode - (disables shift button?)
-- Wingdings Mode
 - Virus Mode
 
 Completed Modes 
@@ -27,3 +24,8 @@ Completed Modes
     - "New Tab" - Closes current tab
 - Rick Mode
 - Party Mode
+- Wingdings Mode
+- Duck Mode
+  - Stamp
+- Blur Mode
+- Censor Mode
