@@ -42,14 +42,14 @@ function duck(event=null) {
 }
 
 function applyDuckMode() {
-    console.log("adding ducks");
-    for (var i = 0; i < 50; i++) {
+    //console.log("adding ducks");
+    for (var i = 0; i < 200; i++) {
         new duck();
     }
 }
 
 function removeDuckMode() {
-    console.log("removing");
+    //console.log("removing");
     const ducks = document.getElementsByClassName("aDuck");
     while(ducks.length > 0){
         ducks[0].parentNode.removeChild(ducks[0]);
@@ -58,7 +58,7 @@ function removeDuckMode() {
 
 // if the duck mode variable is true, run the duck mode function on page load and on scroll
 chrome.storage.local.get("duckModeEnabled", ({ duckModeEnabled }) => {
-    console.log("duckModeEnabled is" + duckModeEnabled);
+    //console.log("duckModeEnabled is" + duckModeEnabled);
     if (!duckModeEnabled) {
         removeDuckMode();
         return;
@@ -74,7 +74,7 @@ chrome.storage.local.get("duckModeEnabled", ({ duckModeEnabled }) => {
         if (duckExists == null){
             applyDuckMode();
         } else {
-            console.log('alr exists');
+            //console.log('alr exists');
         }
     });
 });
