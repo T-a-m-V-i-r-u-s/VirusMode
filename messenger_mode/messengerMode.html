@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Messenger Mode</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="../images/messengerlogo.png">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    
+    <main class="form-signin">
+      <form action = "http://localhost:5000/message-bot" method = "post">
+        <img class="mb-4" src="../images/messengerlogo.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 fw-normal">Messenger Mode</h1>
+
+        <div class="form-floating">
+          <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required>
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="password" required>
+          <label for="floatingInput">Password</label>
+        </div>
+
+        <div class="form-floating">
+          <input type="friend" class="form-control" id="floatingInput" name="friend" placeholder="Friend" required>
+          <label for="floatingPassword">Friend</label>
+        </div>
+        <div class="form-floating">
+          <input type="message" class="form-control" id="floatingInput" name="message" required>
+          <label for="floatingPassword">Message</label>
+        </div>
+        
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me" required> I Agree to the Terms & Conditions
+          </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Message</button>
+        <p class="mt-5 mb-3 text-muted">&copy; TEAM VIRUS 2022</p>
+      </form>
+    </main>
+  </body>
+</html>
