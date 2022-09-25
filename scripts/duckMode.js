@@ -36,7 +36,7 @@ function duck(event=null) {
     this.obj.style.width = this.size + 'px';
     this.obj.style.cursor = "move";
     this.obj.style.zIndex = "100";
-    this.obj.className = "aDuck";
+    this.obj.className = "aDuck quack";
 
     document.body.appendChild(this.obj);
 }
@@ -99,38 +99,40 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 function checkDuckActivity() {
     let ducks = document.getElementsByClassName("aDuck");
     // check if duck is being dragged
-    for (var i = 0; i < ducks.length; i++) {
-        (function (index) {
-            ducks[index].addEventListener("click", function () {
-                size = ducks[index].width;
-            })
+    if (ducks != undefined && ducks != null){
+        for (var i = 0; i < ducks.length; i++) {
+            (function (index) {
+                ducks[index].addEventListener("click", function () {
+                    size = ducks[index].width;
+                })
 
-            ducks[index].addEventListener('mousedown', e => {
-                e.target.classList.add('moving');
-                size = ducks[index].width;
-            })
+                ducks[index].addEventListener('mousedown', e => {
+                    e.target.classList.add('moving');
+                    size = ducks[index].width;
+                })
 
-            ducks[index].addEventListener('mouseup', e => {
-                e.target.classList.remove('moving');
-                size = ducks[index].width;
-            })
+                ducks[index].addEventListener('mouseup', e => {
+                    e.target.classList.remove('moving');
+                    size = ducks[index].width;
+                })
 
-            addEventListener('mouseup', e => {
-                if (ducks.length > 0 ){
-                    if (ducks[index].classList.contains('moving')) {
+                addEventListener('mouseup', e => {
+                    if (ducks.length > 0 ){
+                        if (ducks[index].classList.contains('moving')) {
+                            ducks[index].style.left = (e.clientX - (size / 2) + document.documentElement.scrollLeft) + 'px';
+                            ducks[index].style.top = (e.clientY - (size / 2) + document.documentElement.scrollTop) + 'px';
+                        }
+                        ducks[index].classList.remove('moving')
+                    }
+                })
+
+                addEventListener('mousemove', e => {
+                    if (ducks.length > 0 && ducks[index].classList.contains('moving')) {
                         ducks[index].style.left = (e.clientX - (size / 2) + document.documentElement.scrollLeft) + 'px';
                         ducks[index].style.top = (e.clientY - (size / 2) + document.documentElement.scrollTop) + 'px';
                     }
-                    ducks[index].classList.remove('moving')
-                }
-            })
-
-            addEventListener('mousemove', e => {
-                if (ducks.length > 0 && ducks[index].classList.contains('moving')) {
-                    ducks[index].style.left = (e.clientX - (size / 2) + document.documentElement.scrollLeft) + 'px';
-                    ducks[index].style.top = (e.clientY - (size / 2) + document.documentElement.scrollTop) + 'px';
-                }
-            })
-        })(i);
+                })
+            })(i);
+        }
     }
 }
