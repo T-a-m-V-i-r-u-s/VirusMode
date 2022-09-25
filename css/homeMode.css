@@ -27,3 +27,7 @@ html{
     font-size: 30px;
 }
 
+.dicon {
+    filter: invert(100%);
+}
+
