@@ -87,6 +87,7 @@ let wingdingsModeEnabled = document.getElementById("wingdingsModeEnabled");
 
 //update the toggle elements when the page loads
 chrome.storage.local.get("wingdingsMode", ({ wingdingsMode }) => {
+  // window.alert(wingdingsMode);
   wingdingsModeEnabled.checked = wingdingsMode;
 });
 
@@ -94,23 +95,31 @@ chrome.storage.local.get("wingdingsMode", ({ wingdingsMode }) => {
 function toggleWingdingsMode() {
   chrome.storage.local.get("wingdingsMode", ({ wingdingsMode }) => {
     chrome.storage.local.set({ wingdingsMode: !wingdingsMode });
-    console.log('Wingding set to %c' + !wingdingsMode, `wingdingsMode: ${wingdingsMode}`);
+    console.log('Wingding set to %c' + !wingdingsMode, `wingdingsModeEnabled: ${wingdingsMode}`);
   });
 }
 
 //when the button is clicked, toggle the wingding variable
 wingdingsModeEnabled.addEventListener("click", async () => {
-  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  chrome.storage.local.get("wingdingsMode", async ({ wingdingsMode }) => {
+    wingdingsMode = !wingdingsMode;
+    chrome.storage.local.set({ wingdingsMode: wingdingsMode });
 
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    func: toggleWingdingsMode,
-  });
+    // update the innerHTML of the style element with id naughty-filter
+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-  const css = '* { font-family: wingdings !important; }';
-  chrome.scripting.insertCSS({
-    target: { tabId: tab.id },
-    css: css,
+    function toggleWingdings(wingdingsMode) {
+      if (wingdingsMode) {
+        document.getElementById("wingdings-mode").innerHTML = '* { font-family: wingdings !important; }';
+      } else {
+        document.getElementById("wingdings-mode").innerHTML = '';
+      }
+    }
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: toggleWingdings,
+      args: [wingdingsMode],
+    });
   });
 });
 
@@ -156,7 +165,7 @@ chrome.storage.local.get("allCapsModeEnabled", ({ allCapsModeEnabled }) => {
 });
 
 // function to toggle the all caps mode variable
-function toggleAllCapsMode(){
+function toggleAllCapsMode() {
   chrome.storage.local.get("allCapsModeEnabled", ({ allCapsModeEnabled }) => {
     chrome.storage.local.set({ allCapsModeEnabled: !allCapsModeEnabled });
     console.log('All Caps Mode set to %c' + !allCapsModeEnabled, `allCapsModeEnabled: ${allCapsModeEnabled}`);
@@ -183,7 +192,7 @@ chrome.storage.local.get("noCapsModeEnabled", ({ noCapsModeEnabled }) => {
 });
 
 // function to toggle the no caps mode variable
-function toggleNoCapsMode(){
+function toggleNoCapsMode() {
   chrome.storage.local.get("noCapsModeEnabled", ({ noCapsModeEnabled }) => {
     chrome.storage.local.set({ noCapsModeEnabled: !noCapsModeEnabled });
     console.log('no caps mode set to %c' + !noCapsModeEnabled, `noCapsModeEnabled: ${noCapsModeEnabled}`);
@@ -238,7 +247,7 @@ chrome.storage.local.get("naughtyFilterLevel", ({ naughtyFilterLevel }) => {
 // Update the vision level when the slider is changed
 naughtyFilterLevelSlider.oninput = async function () {
   chrome.storage.local.set({ naughtyFilterLevel: this.value });
-  
+
   // update the innerHTML of the style element with id naughty-filter
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
