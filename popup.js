@@ -37,8 +37,8 @@ chrome.storage.local.get("rickRoll", ({ rickRoll }) => {
 // Function to toggle the rick roll variable
 function toggleRickRoll() {
   chrome.storage.local.get("rickRoll", ({ rickRoll }) => {
-    chrome.storage.local.set({ rickRoll: !rickRoll });
-    console.log('Rick roll set to %c' + !rickRoll, `rickRoll: ${rickRoll}`);
+    rickRoll = !rickRoll;
+    chrome.storage.local.set({ rickRoll: rickRoll });
   });
 }
 
@@ -46,9 +46,15 @@ function toggleRickRoll() {
 rickMode.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-  chrome.scripting.executeScript({
+  await chrome.scripting.executeScript({
     target: { tabId: tab.id },
     func: toggleRickRoll,
+  });
+
+  // run ./scripts/rick.js on the current tab
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    files: ["./scripts/rick.js"],
   });
 });
 
