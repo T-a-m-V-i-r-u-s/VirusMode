@@ -42,8 +42,8 @@ function duck(event=null) {
 }
 
 function applyDuckMode() {
-    //console.log("adding ducks");
-    for (var i = 0; i < 200; i++) {
+    let duckCount = (getPageHeight() * getPageWidth()) / 6000;
+    for (var i = 0; i < duckCount; i++) {
         new duck();
     }
     
