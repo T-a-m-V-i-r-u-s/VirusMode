@@ -3,7 +3,7 @@ body{
     font-family: 'Open Sans', sans-serif;
     /* color: #fff; */
     background-color: #000;
-    background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(../images/evilDuck.png);
+    background-image: url(../images/evilDuck.png); /* linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), */
     background-size: cover;
     background-blend-mode: multiply;
 }
