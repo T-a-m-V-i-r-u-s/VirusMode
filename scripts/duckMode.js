@@ -46,38 +46,54 @@ function applyDuckMode() {
     for (var i = 0; i < 200; i++) {
         new duck();
     }
+    
+    // generate duck on mouse click
+    document.addEventListener("click", mouse_move, false);
 }
 
 function removeDuckMode() {
-    //console.log("removing");
+    document.removeEventListener('click', mouse_move);
     const ducks = document.getElementsByClassName("aDuck");
     while(ducks.length > 0){
         ducks[0].parentNode.removeChild(ducks[0]);
     }
 }
 
-// if the duck mode variable is true, run the duck mode function on page load and on scroll
-chrome.storage.local.get("duckModeEnabled", ({ duckModeEnabled }) => {
-    //console.log("duckModeEnabled is" + duckModeEnabled);
-    if (!duckModeEnabled) {
-        removeDuckMode();
-        return;
-    }
+function mouse_move(event) {
+    new duck(event);
+    checkDuckActivity();
+}
 
-    // Otherwise, run the function on page load
-    $(document).ready(function () {
+//if duckmode is enabled, apply duck mode
+chrome.storage.local.get("duckModeEnabled", ({ duckModeEnabled }) => {
+    if(duckModeEnabled){
         applyDuckMode();
-    });
-    // and run fuction on page scroll
-    $(window).scroll(function () {
-        let duckExists = document.getElementsByClassName('aDuck');
-        if (duckExists == null){
-            applyDuckMode();
-        } else {
-            //console.log('alr exists');
-        }
-    });
+        checkDuckActivity();
+        // run fuction on page scroll
+        $(window).scroll(function () {
+            let duckExists = document.getElementsByClassName('aDuck');
+            if (duckExists == null){
+                applyDuckMode();
+            } else {
+                //console.log('alr exists');
+            }
+        });
+    }
 });
+
+//apply duck mode when switch value is changed
+chrome.storage.onChanged.addListener((changes, namespace) => {
+    for (key in changes) {
+        if(key === "duckModeEnabled"){
+            if(changes[key].newValue){
+                applyDuckMode();
+            } else {
+                removeDuckMode();
+            }
+        }
+    }
+});
+
 
 // get all randomly generated ducks
 function checkDuckActivity() {
@@ -86,42 +102,35 @@ function checkDuckActivity() {
     for (var i = 0; i < ducks.length; i++) {
         (function (index) {
             ducks[index].addEventListener("click", function () {
-                console.log("Clicked index: " + index);
                 size = ducks[index].width;
             })
 
             ducks[index].addEventListener('mousedown', e => {
-                e.target.classList.add('moving')
+                e.target.classList.add('moving');
                 size = ducks[index].width;
             })
 
             ducks[index].addEventListener('mouseup', e => {
-                e.target.classList.remove('moving')
+                e.target.classList.remove('moving');
                 size = ducks[index].width;
             })
 
             addEventListener('mouseup', e => {
-                if (ducks[index].classList.contains('moving')) {
-                    ducks[index].style.left = (e.clientX - (size / 2) + document.documentElement.scrollLeft) + 'px'
-                    ducks[index].style.top = (e.clientY - (size / 2) + document.documentElement.scrollTop) + 'px'
+                if (ducks.length > 0 ){
+                    if (ducks[index].classList.contains('moving')) {
+                        ducks[index].style.left = (e.clientX - (size / 2) + document.documentElement.scrollLeft) + 'px';
+                        ducks[index].style.top = (e.clientY - (size / 2) + document.documentElement.scrollTop) + 'px';
+                    }
+                    ducks[index].classList.remove('moving')
                 }
-                ducks[index].classList.remove('moving')
             })
 
             addEventListener('mousemove', e => {
-                if (ducks[index].classList.contains('moving')) {
-                    ducks[index].style.left = (e.clientX - (size / 2) + document.documentElement.scrollLeft) + 'px'
-                    ducks[index].style.top = (e.clientY - (size / 2) + document.documentElement.scrollTop) + 'px'
+                if (ducks.length > 0 && ducks[index].classList.contains('moving')) {
+                    ducks[index].style.left = (e.clientX - (size / 2) + document.documentElement.scrollLeft) + 'px';
+                    ducks[index].style.top = (e.clientY - (size / 2) + document.documentElement.scrollTop) + 'px';
                 }
             })
         })(i);
     }
-}
-checkDuckActivity();
-
-// generate duck on mouse click
-document.addEventListener("click", mouse_move, false);
-function mouse_move(event) {
-    new duck(event);
-    checkDuckActivity();
 }
