@@ -21,7 +21,7 @@ function applyRickRoll() {
     if ($("#rick-filter").length != 0) {
         return;
     }
-    const css = 'img:not(.aDuck) { content: url(https://c.tenor.com/_4YgA77ExHEAAAAd/rick-roll.gif); }';
+    const css = 'img:not(.quack) { content: url(https://c.tenor.com/_4YgA77ExHEAAAAd/rick-roll.gif); }';
     const head = document.head || document.getElementsByTagName('head')[0];
     const style = document.createElement('style');
     // change the id to rick-filter so that it can be removed later

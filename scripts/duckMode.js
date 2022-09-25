@@ -36,7 +36,7 @@ function duck(event=null) {
     this.obj.style.width = this.size + 'px';
     this.obj.style.cursor = "move";
     this.obj.style.zIndex = "100";
-    this.obj.className = "aDuck";
+    this.obj.className = "aDuck quack";
 
     document.body.appendChild(this.obj);
 }
