@@ -1,11 +1,12 @@
 body{
-    font-size: 62.5%;
-    font-family: 'Open Sans', sans-serif;
+    /* font-size: 62.5%; */
+    /* font-family: 'Open Sans', sans-serif; */
     /* color: #fff; */
-    background-color: #000;
+    /* background-color: #000; */
     background-image: url(../images/evilDuck.png); /* linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), */
     background-size: cover;
-    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: 50% 15%;
 }
 
 .grid-container {
