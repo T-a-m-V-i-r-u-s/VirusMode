@@ -86,15 +86,15 @@ partyModeEnabled.addEventListener("click", async () => {
 let wingdingsModeEnabled = document.getElementById("wingdingsModeEnabled");
 
 //update the toggle elements when the page loads
-chrome.storage.local.get("wingdingsMode", ({ wingdingsMode }) => {
-  wingdingsModeEnabled.checked = wingdingsMode;
+chrome.storage.local.get("wingdingsModeEnabled", ({ wingdingsModeEnabled }) => {
+  wingdingsModeEnabled.checked = wingdingsModeEnabled;
 });
 
 //function to toggle the wingding variable
 function toggleWingdingsMode() {
-  chrome.storage.local.get("wingdingsMode", ({ wingdingsMode }) => {
-    chrome.storage.local.set({ wingdingsMode: !wingdingsMode });
-    console.log('Wingding set to %c' + !wingdingsMode, `wingdingsMode: ${wingdingsMode}`);
+  chrome.storage.local.get("wingdingsModeEnabled", ({ wingdingsModeEnabled }) => {
+    chrome.storage.local.set({ wingdingsModeEnabled: !wingdingsModeEnabled });
+    console.log('Wingding set to %c' + !wingdingsModeEnabled, `wingdingsModeEnabled: ${wingdingsModeEnabled}`);
   });
 }
 

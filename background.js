@@ -47,6 +47,11 @@ chrome.runtime.onInstalled.addListener(() => {
       chrome.storage.local.set({ naughtyFilterLevel: 0 });
     }
   });
+  chrome.storage.local.get("duckRunMode", ({ duckRunMode }) => {
+    if (duckRunMode === undefined) {
+      chrome.storage.local.set({ duckRunMode: false });
+    }
+  });
   
   // chrome.storage.local.set({ rickRoll: false });
   // chrome.storage.local.set({ partyMode: false });

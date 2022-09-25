@@ -7,7 +7,7 @@ function applyWingdingsMode(){
 }
 
 //if wingdings mode is enabled, apply wingdings mode
-chrome.storage.local.get("wingdingsMode", ({ wingdingsMode }) => {
+chrome.storage.local.get("wingdingsModeEnabled", ({ wingdingsModeEnabled }) => {
     if(wingdingsMode){
         applyWingdingsMode();
     }
@@ -16,7 +16,7 @@ chrome.storage.local.get("wingdingsMode", ({ wingdingsMode }) => {
 //apply wingdings mode when switch value is changed
 chrome.storage.onChanged.addListener((changes, namespace) => {
     for (key in changes) {
-        if(key === "wingdingsMode"){
+        if(key === "wingdingsModeEnabled"){
             if(changes[key].newValue){
                 applyWingdingsMode();
             } else {
