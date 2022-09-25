@@ -1,11 +1,11 @@
-html{
+body{
     font-size: 62.5%;
     font-family: 'Open Sans', sans-serif;
     /* color: #fff; */
     background-color: #000;
-    background-image: url(../images/evilDuck.png);
+    background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(../images/evilDuck.png);
     background-size: cover;
-    
+    background-blend-mode: multiply;
 }
 
 .grid-container {
