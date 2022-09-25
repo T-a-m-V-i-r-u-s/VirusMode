@@ -8,7 +8,7 @@ function duck2() {
     this.obj.style.position = "absolute";
     this.obj.style.cursor = "move";
     this.obj.style.zIndex = "1000";
-    this.obj.className = "thiefDuck";
+    this.obj.className = "thiefDuck quack";
 
     document.body.appendChild(this.obj);
     return this.obj
@@ -37,9 +37,6 @@ function applyDuckThiefMode() {
     
             let locX = divToSteal.offset().left + (divToSteal.width()/2);
             let locY = divToSteal.offset().top - (divToSteal.height()/2);
-
-            //console.log($("div:eq("+divToSteal+")"));
-            console.log(divToSteal);
             
             // animate duck to go to div
             var left = $('#thief').offset().left;  // Get the calculated left position
@@ -48,7 +45,6 @@ function applyDuckThiefMode() {
             var b = Math.abs(locY-top);
 
             var distance = Math.sqrt( a*a + b*b ) + 50;
-            console.log(distance);
             var speed = 0.5;
             $("#thief").css({left:left, top:top})  // Set the left to its calculated position
                         .animate({"left":locX+"px", "top":locY+"px"}, distance/speed, function() {
@@ -68,6 +64,8 @@ function removeDuckThiefMode() {
 chrome.storage.local.get("duckThiefModeEnabled", ({ duckThiefModeEnabled }) => {
     if(duckThiefModeEnabled){
         applyDuckThiefMode();
+    } else {
+        removeDuckThiefMode();
     }
 });
 
