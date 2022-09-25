@@ -14,8 +14,6 @@ To be Completed Modes
 - Duck Mode
   - Run
 - 48hr Mode
-- CAPS MODE
-- no cap mode - (disables shift button?)
 - Virus Mode
 
 Completed Modes 
@@ -29,3 +27,5 @@ Completed Modes
   - Stamp
 - Blur Mode
 - Censor Mode
+- CAPS MODE
+- no cap mode

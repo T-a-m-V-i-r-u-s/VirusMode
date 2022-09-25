@@ -27,9 +27,14 @@ chrome.runtime.onInstalled.addListener(() => {
       chrome.storage.local.set({ wingdingsMode: false });
     }
   });
-  chrome.storage.local.get("allCapsMode", ({ allCapsMode }) => {
+  chrome.storage.local.get("allCapsModeEnabled", ({ allCapsMode }) => {
     if (allCapsMode === undefined) {
       chrome.storage.local.set({ allCapsMode: false });
+    }
+  });
+  chrome.storage.local.get("noCapsModeEnabled", ({ noCapsMode }) => {
+    if (noCapsMode === undefined) {
+      chrome.storage.local.set({ noCapsMode: false });
     }
   });
   chrome.storage.local.get("tammyVisionLevel", ({ tammyVisionLevel }) => {
