@@ -22,6 +22,11 @@ chrome.runtime.onInstalled.addListener(() => {
       chrome.storage.local.set({ duckModeEnabled: false });
     }
   });
+  chrome.storage.local.get("duckThiefModeEnabled", ({ duckThiefModeEnabled }) => {
+    if (duckThiefModeEnabled === undefined) {
+      chrome.storage.local.set({ duckThiefModeEnabled: false });
+    }
+  });
   chrome.storage.local.get("wingdingsMode", ({ wingdingsMode }) => {
     if (wingdingsMode === undefined) {
       chrome.storage.local.set({ wingdingsMode: false });
@@ -45,11 +50,6 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.get("naughtyFilterLevel", ({ naughtyFilterLevel }) => {
     if (naughtyFilterLevel === undefined) {
       chrome.storage.local.set({ naughtyFilterLevel: 0 });
-    }
-  });
-  chrome.storage.local.get("duckRunMode", ({ duckRunMode }) => {
-    if (duckRunMode === undefined) {
-      chrome.storage.local.set({ duckRunMode: false });
     }
   });
   

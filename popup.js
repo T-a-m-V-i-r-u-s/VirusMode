@@ -148,10 +148,33 @@ duckMode.addEventListener("click", async () => {
     target: { tabId: tab.id },
     func: toggleDuckMode,
   });
-  // inject duck mode script into active tab
-  //chrome.tabs.query({active: true, currentWindow: true}, tabs => {
-  //  chrome.scripting.executeScript({target: {tabId: tabs[0].id}, files: ['scripts/duckMode.js']})
-  //})
+});
+
+
+/* ----- Duck thief mode ----- */
+// get toggle elements
+let duckThiefMode = document.getElementById("duckThiefModeEnabled");
+
+// Update the toggle elements when the page loads
+chrome.storage.local.get("duckThiefModeEnabled", ({ duckThiefModeEnabled }) => {
+  duckThiefMode.checked = duckThiefModeEnabled;
+});
+
+// Function to toggle the duck mode variable
+function toggleDuckThiefMode() {
+  chrome.storage.local.get("duckThiefModeEnabled", ({ duckThiefModeEnabled }) => {
+    chrome.storage.local.set({ duckThiefModeEnabled: !duckThiefModeEnabled });
+    console.log('Duck thief mode set to %c' + !duckThiefModeEnabled, `duckThiefModeEnabled: ${duckThiefModeEnabled}`);
+  });
+}
+// When the button is clicked, toggle the duck thief mode variable
+duckThiefMode.addEventListener("click", async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    func: toggleDuckThiefMode,
+  });
 });
 
 

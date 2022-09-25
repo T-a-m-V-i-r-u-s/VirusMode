@@ -51,6 +51,19 @@
 
   <div class="container">
     <label class="switch">
+      <div class="label-text">Duck Thief mode</div>
+      <div class="toggle">
+        <input class="toggle-state" type="checkbox" id="duckThiefModeEnabled" />
+        <div class="toggle-inner">
+          <div class="indicator"></div>
+        </div>
+        <div class="active-bg"></div>
+      </div>
+    </label>
+  </div>
+
+  <div class="container">
+    <label class="switch">
       <div class="label-text">Wing Ding Dong</div>
       <div class="toggle">
         <input class="toggle-state" type="checkbox" id="wingdingsModeEnabled" />
@@ -100,19 +113,6 @@
       <div class="label-text">The sus slider</div>
       <input type="range" min="0" max="25" value="0" class="slider" id="naughtyFilterLevel">
     </div>
-  </div>
-
-  <div class="container">
-    <label class="switch">
-      <div class="label-text">Duck Run mode</div>
-      <div class="toggle">
-        <input class="toggle-state" type="checkbox" id="duckRunMode" />
-        <div class="toggle-inner">
-          <div class="indicator"></div>
-        </div>
-        <div class="active-bg"></div>
-      </div>
-    </label>
   </div>
 
   <script src="popup.js"></script>
