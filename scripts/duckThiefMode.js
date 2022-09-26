@@ -64,6 +64,8 @@ function removeDuckThiefMode() {
 chrome.storage.local.get("duckThiefModeEnabled", ({ duckThiefModeEnabled }) => {
     if(duckThiefModeEnabled){
         applyDuckThiefMode();
+    } else {
+        removeDuckThiefMode();
     }
 });
 

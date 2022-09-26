@@ -1,27 +1,27 @@
-// Initialize button with user's preferred color
-let changeColor = document.getElementById("changeColor");
+// // Initialize button with user's preferred color
+// let changeColor = document.getElementById("changeColor");
 
-chrome.storage.local.get("color", ({ color }) => {
-  changeColor.style.backgroundColor = color;
-});
+// chrome.storage.local.get("color", ({ color }) => {
+//   changeColor.style.backgroundColor = color;
+// });
 
-// When the button is clicked, inject setPageBackgroundColor into current page
-changeColor.addEventListener("click", async () => {
-  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+// // When the button is clicked, inject setPageBackgroundColor into current page
+// changeColor.addEventListener("click", async () => {
+//   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    func: setPageBackgroundColor,
-  });
-});
+//   chrome.scripting.executeScript({
+//     target: { tabId: tab.id },
+//     func: setPageBackgroundColor,
+//   });
+// });
 
-// The body of this function will be executed as a content script inside the
-// current page
-function setPageBackgroundColor() {
-  chrome.storage.local.get("color", ({ color }) => {
-    document.body.style.backgroundColor = color;
-  });
-}
+// // The body of this function will be executed as a content script inside the
+// // current page
+// function setPageBackgroundColor() {
+//   chrome.storage.local.get("color", ({ color }) => {
+//     document.body.style.backgroundColor = color;
+//   });
+// }
 
 
 /* ------------- TOGGLE SETTINGS ------------- */

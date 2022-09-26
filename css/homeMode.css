@@ -1,11 +1,12 @@
-html{
-    font-size: 62.5%;
-    font-family: 'Open Sans', sans-serif;
+body{
+    /* font-size: 62.5%; */
+    /* font-family: 'Open Sans', sans-serif; */
     /* color: #fff; */
-    background-color: #FFF;
-    background-image: url(../images/evilDuck.png);
+    /* background-color: #000; */
+    background-image: url(../images/evilDuck.png); /* linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), */
     background-size: cover;
-    
+    background-repeat: no-repeat;
+    background-position: 50% 15%;
 }
 
 .grid-container {
@@ -25,5 +26,9 @@ html{
     border-radius: 10px;
     text-align: center;
     font-size: 30px;
+}
+
+.dicon {
+    filter: invert(100%);
 }
 

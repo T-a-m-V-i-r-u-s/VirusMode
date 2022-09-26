@@ -49,6 +49,7 @@ function applyDuckMode() {
     
     // generate duck on mouse click
     document.addEventListener("click", mouse_move, false);
+    checkDuckActivity();
 }
 
 function removeDuckMode() {
@@ -68,7 +69,6 @@ function mouse_move(event) {
 chrome.storage.local.get("duckModeEnabled", ({ duckModeEnabled }) => {
     if(duckModeEnabled){
         applyDuckMode();
-        checkDuckActivity();
         // run fuction on page scroll
         $(window).scroll(function () {
             let duckExists = document.getElementsByClassName('aDuck');
@@ -78,6 +78,8 @@ chrome.storage.local.get("duckModeEnabled", ({ duckModeEnabled }) => {
                 //console.log('alr exists');
             }
         });
+    } else {
+        removeDuckMode();
     }
 });
 
@@ -117,7 +119,7 @@ function checkDuckActivity() {
                 })
 
                 addEventListener('mouseup', e => {
-                    if (ducks.length > 0 ){
+                    if (ducks.length > 0 && ducks[index] != undefined){
                         if (ducks[index].classList.contains('moving')) {
                             ducks[index].style.left = (e.clientX - (size / 2) + document.documentElement.scrollLeft) + 'px';
                             ducks[index].style.top = (e.clientY - (size / 2) + document.documentElement.scrollTop) + 'px';
@@ -127,10 +129,12 @@ function checkDuckActivity() {
                 })
 
                 addEventListener('mousemove', e => {
-                    if (ducks.length > 0 && ducks[index].classList.contains('moving')) {
+                    if (ducks.length > 0 && ducks[index] != undefined){
+                        if (ducks[index].classList.contains('moving')) {
                         ducks[index].style.left = (e.clientX - (size / 2) + document.documentElement.scrollLeft) + 'px';
                         ducks[index].style.top = (e.clientY - (size / 2) + document.documentElement.scrollTop) + 'px';
-                    }
+                        }
+                    } 
                 })
             })(i);
         }
