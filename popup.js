@@ -238,6 +238,33 @@ noCapsMode.addEventListener("click", async () => {
   });
 });
 
+/* ----- dsylecsix mode ----- */
+//get toggle elements
+let dsylecsixMode = document.getElementById("dsylecsixModeEnabled");
+
+//Update the toggle elements when the page loads
+chrome.storage.local.get("dsylecsixModeEnabled", ({ dsylecsixModeEnabled }) => {
+  dsylecsixMode.checked = dsylecsixModeEnabled;
+});
+
+// function to toggle the no caps mode variable
+function toggleDsylecsixMode() {
+  chrome.storage.local.get("dsylecsixModeEnabled", ({ dsylecsixModeEnabled }) => {
+    chrome.storage.local.set({ dsylecsixModeEnabled: !dsylecsixModeEnabled });
+    console.log('no dsylecsix mode set to %c' + !dsylecsixModeEnabled, `dsylecsixModeEnabled: ${dsylecsixModeEnabled}`);
+  });
+}
+
+//when the button is clicked, toggle the no caps mode variable
+dsylecsixMode.addEventListener("click", async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    func: toggleDsylecsixMode,
+  });
+});
+
 /* ------------- RANGE SLIDER ------------- */
 /* ----- Tammy vision ----- */
 // Get the slider

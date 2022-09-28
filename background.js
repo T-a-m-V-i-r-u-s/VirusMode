@@ -42,6 +42,11 @@ chrome.runtime.onInstalled.addListener(() => {
       chrome.storage.local.set({ noCapsMode: false });
     }
   });
+  chrome.storage.local.get("dsylecsixModeEnabled", ({ dsylecsixMode }) => {
+    if (dsylecsixMode === undefined) {
+      chrome.storage.local.set({ dsylecsixMode: false });
+    }
+  });
   chrome.storage.local.get("tammyVisionLevel", ({ tammyVisionLevel }) => {
     if (tammyVisionLevel === undefined) {
       chrome.storage.local.set({ tammyVisionLevel: 0 });

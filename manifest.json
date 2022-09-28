@@ -19,7 +19,8 @@
               "scripts/naughtyFilter.js", 
               "scripts/allCapsMode.js", 
               "scripts/noCapsMode.js",
-              "scripts/duckThiefMode.js"
+              "scripts/duckThiefMode.js",
+              "scripts/dsylecsix.js"
             ],
       "css": ["helpers/jquery-ui-1.13.2.min.css"],
       "run_at": "document_end"
